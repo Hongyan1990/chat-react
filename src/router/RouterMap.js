@@ -12,7 +12,7 @@ const RouterList = [
   },
   {
     path: '/register',
-    component: () => import('../components/Register')
+    component: () => import('../containers/Register')
   }
 ];
 

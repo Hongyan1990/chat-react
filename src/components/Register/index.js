@@ -10,6 +10,7 @@ class Register extends React.Component {
   };
   handleClick() {
     console.log(this.state)
+    this.props.registerUser(this.state)
   }
 
   onChange(v) {
@@ -31,6 +32,7 @@ class Register extends React.Component {
     const {type} = this.state;
     return (
       <div>
+        <p>{this.props.userName}</p>
         <div className="logo-wrap">
           <img src={logoUrl} alt=""/>
         </div>

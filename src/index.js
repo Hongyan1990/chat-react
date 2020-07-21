@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-// import * as serviceWorker from './serviceWorker';
+import {Provider} from 'react-redux';
 
+// import * as serviceWorker from './serviceWorker';
+import './index.css';
+import createMyStore from "./reducers";
 import RouterMap from './router/RouterMap'
 
+const store = createMyStore()
 ReactDOM.render(
-  <div>
+  <Provider store={store}>
     <RouterMap />
-  </div>
-
-  ,
+  </Provider>,
   document.getElementById('root')
 );
 
