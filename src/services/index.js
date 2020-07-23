@@ -5,10 +5,14 @@ import cookie from '../util/cookie';
 const request = axios.create({baseURL: '/api'});
 
 request.interceptors.request.use(
-  config => {
+  async config => {
     let csrfToken = cookie.getCookie('csrfToken');
     if (csrfToken) {
       config.headers['x-csrf-token'] = csrfToken;
+    } else {
+      // await request.get('/action');
+      // let csrfToken = cookie.getCookie('csrfToken');
+      // config.headers['x-csrf-token'] = csrfToken;
     }
     return config;
   },
@@ -17,7 +21,14 @@ request.interceptors.request.use(
   }
 );
 
-const handleRequest = (req) => {
+const handleRequest = async (req) => {
+  // console.log(req)
+  // if(req.config.method === 'post') {
+  //   let csrfToken = cookie.getCookie('csrfToken');
+  //   if(!csrfToken) {
+  //     await fetch('/api/home')
+  //   }
+  // }
   return new Promise((resolve, reject) => {
     req.then(res => {
       if(res.data.code === 0) {
