@@ -2,10 +2,10 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { combineReducers } from 'redux';
 
-import {userName} from "./register";
+import {userInfo} from "./register";
 
 const reducer = combineReducers({
-  userName
+  userInfo
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__?

@@ -6,7 +6,7 @@ import './index.css'
 
 class Register extends React.Component {
   state = {
-    type: 0
+    role: 0
   };
   handleClick() {
     console.log(this.state)
@@ -14,7 +14,7 @@ class Register extends React.Component {
   }
 
   onChange(v) {
-    this.setState({type: v})
+    this.setState({role: v})
   }
 
   handleChange(key, val) {
@@ -29,25 +29,25 @@ class Register extends React.Component {
       { value: 0, label: '牛人' },
       { value: 1, label: 'Boss' },
     ];
-    const {type} = this.state;
+    const {role} = this.state;
     return (
       <div>
-        <p>{this.props.userName}</p>
         <div className="logo-wrap">
           <img src={logoUrl} alt=""/>
         </div>
 
         <WingBlank>
+          {this.props.errMsg ? <p className="err-tip">{this.props.errMsg}</p>: null}
           <WhiteSpace/>
           <List>
-            <InputItem name="user" onChange={v => this.handleChange('user', v)}>用户名</InputItem>
+            <InputItem name="user" onChange={v => this.handleChange('name', v)}>用户名</InputItem>
             <InputItem name="pwd" type="password" onChange={v => this.handleChange('pwd', v)}>密码</InputItem>
             <InputItem name="pwd2" type="password" onChange={v => this.handleChange('pwd2', v)}>确认密码</InputItem>
           </List>
           <WhiteSpace/>
           <List>
             {data.map(i => (
-              <RadioItem key={i.value} checked={type === i.value} onChange={() => this.onChange(i.value)}>
+              <RadioItem key={i.value} checked={role === i.value} onChange={() => this.onChange(i.value)}>
                 {i.label}
               </RadioItem>
             ))}

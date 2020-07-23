@@ -5,7 +5,9 @@ import Register from "../components/Register";
 
 function mapStateToProps(state) {
   return {
-    userName: state.userName
+    name: state.userInfo.name,
+    role: state.userInfo.role,
+    errMsg: state.userInfo.errMsg
   }
 }
 

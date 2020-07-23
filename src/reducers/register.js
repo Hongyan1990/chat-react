@@ -1,9 +1,18 @@
-import {SAVE_USER} from "../actions";
+import {REGISTER_SUCCESS, REGISTER_FAIL} from "../actions";
 
-export function userName(state='', action) {
+export function userInfo(state={
+  name: '',
+  role: 0,
+  avatar: '',
+  isAuth: false,
+  redirectPath: '',
+  errMsg: ''
+}, action) {
   switch (action.type) {
-    case SAVE_USER:
-      return action.userName;
+    case REGISTER_SUCCESS:
+      return {...state, name: action.userInfo.name, role: action.userInfo.role, isAuth: true, errMsg: ''};
+    case REGISTER_FAIL:
+      return {...state, isAuth: false, errMsg: action.errMsg}
     default:
       return state;
   }
