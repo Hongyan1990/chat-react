@@ -4,6 +4,7 @@ import * as Loadable from 'react-loadable';
 
 import App from '../containers/App.js'
 import Loading from './Loading'
+import Authority from '../containers/Authority'
 
 const RouterList = [
   {
@@ -13,12 +14,17 @@ const RouterList = [
   {
     path: '/register',
     component: () => import('../containers/Register')
+  },
+  {
+    path: '/userinfo',
+    component: () => import('../containers/UserInfo')
   }
 ];
 
 const RouterMap = () => (
   <Router>
     <App>
+      <Authority />
       <Switch>
         {
           RouterList.map(item => (
