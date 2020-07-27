@@ -9,7 +9,7 @@ import Authority from '../containers/Authority'
 const RouterList = [
   {
     path: '/login',
-    component: () => import('../components/Login')
+    component: () => import('../containers/Login')
   },
   {
     path: '/register',

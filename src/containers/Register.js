@@ -7,7 +7,8 @@ function mapStateToProps(state) {
   return {
     name: state.userInfo.name,
     role: state.userInfo.role,
-    errMsg: state.userInfo.errMsg
+    errMsg: state.userInfo.errMsg,
+    redirectPath: state.userInfo.redirectPath
   }
 }
 

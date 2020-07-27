@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Button, WingBlank, WhiteSpace, List, InputItem, Radio} from "antd-mobile";
+import {Redirect} from 'react-router-dom'
 
 import logoUrl from '../../static/job.png'
 import './index.css'
@@ -38,6 +39,7 @@ class Register extends React.Component {
 
         <WingBlank>
           {this.props.errMsg ? <p className="err-tip">{this.props.errMsg}</p>: null}
+          {this.props.redirectPath ? <Redirect to={this.props.redirectPath}/> : null}
           <WhiteSpace/>
           <List>
             <InputItem name="user" onChange={v => this.handleChange('name', v)}>用户名</InputItem>

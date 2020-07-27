@@ -45,3 +45,7 @@ const handleRequest = async (req) => {
 export function registerModel(data) {
   return handleRequest(request.post('/register', data))
 }
+
+export function loginModel(data) {
+  return handleRequest(request.post('/login', data))
+}
