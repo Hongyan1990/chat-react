@@ -1,10 +1,11 @@
 import { Toast } from 'antd-mobile';
-import {registerModel, loginModel} from "../services";
+import {registerModel, loginModel, updateModel} from "../services";
 
 export const SAVE_USER = 'SAVE_USER';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const UPDATE_USER = 'UPDATE_USER';
 
 export function saveUser(userName) {
   return {
@@ -57,6 +58,18 @@ export function login(userInfo) {
       .then(data => {
         dispatch(loginSuccess(data))
         Toast.success('登录成功', 1)
+      })
+      .catch(err => {
+        dispatch(registerFail(err))
+      })
+  }
+}
+
+export function updateUserInfo(userInfo) {
+  return dispatch => {
+    return updateModel(userInfo)
+      .then(data => {
+        dispatch({type: UPDATE_USER})
       })
       .catch(err => {
         dispatch(registerFail(err))

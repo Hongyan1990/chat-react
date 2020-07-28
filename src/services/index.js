@@ -49,3 +49,7 @@ export function registerModel(data) {
 export function loginModel(data) {
   return handleRequest(request.post('/login', data))
 }
+
+export function updateModel(data) {
+  return handleRequest(request.post('/userinfo', data))
+}
