@@ -16,7 +16,7 @@ const RouterList = [
     component: () => import('../containers/Register')
   },
   {
-    path: '/userinfo',
+    path: '/userinfo/:id',
     component: () => import('../containers/UserInfo')
   }
 ];

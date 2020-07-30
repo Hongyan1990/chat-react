@@ -1,4 +1,9 @@
-import {REGISTER_SUCCESS, LOGIN_SUCCESS, REGISTER_FAIL} from "../actions";
+import {
+  REGISTER_SUCCESS,
+  LOGIN_SUCCESS,
+  REGISTER_FAIL,
+  UPDATE_USER
+} from "../actions";
 
 export function userInfo(state={
   id: '',
@@ -18,7 +23,7 @@ export function userInfo(state={
         role: action.userInfo.role,
         isAuth: true,
         errMsg: '',
-        redirectPath: '/userinfo'
+        redirectPath: `/userinfo/${action.userInfo.role}`
       };
     case LOGIN_SUCCESS:
       return {
@@ -29,7 +34,12 @@ export function userInfo(state={
         isAuth: true,
         avatar: action.userInfo.avatar,
         errMsg: '',
-        redirectPath: '/userinfo'
+        redirectPath: `/userinfo/${action.userInfo.role}`
+      };
+    case UPDATE_USER:
+      return {
+        ...state,
+        redirectPath: `/boss`
       };
     case REGISTER_FAIL:
       return {...state, isAuth: false, errMsg: action.errMsg, redirectPath: ''}
