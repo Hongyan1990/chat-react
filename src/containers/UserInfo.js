@@ -12,7 +12,7 @@ class UserInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      avatar: 'abigail.png'
+      avatar: 'abigail'
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -28,7 +28,6 @@ class UserInfo extends React.Component {
   }
 
   saveInfo() {
-    console.log(this.state)
     const id = cookie.getCookie('userToken');
     let jsonData = {};
     if(id) {
@@ -42,7 +41,7 @@ class UserInfo extends React.Component {
   render() {
     const {id} = this.props.match.params;
     const {avatar} = this.state;
-    const imgUrl = require( `../static/${avatar}`)
+    const imgUrl = require( `../static/${avatar}.png`)
     console.log(this.props)
     return (
       <div>
