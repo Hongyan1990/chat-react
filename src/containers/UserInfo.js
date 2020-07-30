@@ -1,11 +1,12 @@
 import * as React from 'react';
 import {connect} from "react-redux";
-import Boss from '../components/UserInfo/Boss';
-import Bull from '../components/UserInfo/Bull';
+import {Redirect} from "react-router-dom";
 import {Button} from "antd-mobile";
 
 import {updateUserInfo} from "../actions";
 import cookie from "../util/cookie";
+import Boss from '../components/UserInfo/Boss';
+import Bull from '../components/UserInfo/Bull';
 
 
 class UserInfo extends React.Component {
@@ -40,16 +41,18 @@ class UserInfo extends React.Component {
 
   render() {
     const {id} = this.props.match.params;
+    const {redirectPath} = this.props;
     const {avatar} = this.state;
     const imgUrl = require( `../static/${avatar}.png`)
     console.log(this.props)
     return (
       <div>
+        {redirectPath ? <Redirect to={redirectPath} /> : null}
         <p>
           <img src={imgUrl} alt="" width={30}/>
           <span style={{fontSize: 12}}>这是你选中的新头像哦</span>
         </p>
-        {id === "1" ? <Boss onClick={this.handleClick} onChange={this.handleChange} /> : <Bull/> }
+        {id === "1" ? <Boss onClick={this.handleClick} onChange={this.handleChange} /> : <Bull  onClick={this.handleClick} onChange={this.handleChange}/> }
         <Button type="primary" onClick={this.saveInfo}>提 交</Button>
       </div>
     )
@@ -57,4 +60,4 @@ class UserInfo extends React.Component {
 }
 
 
-export default connect(state => ({role: state.userInfo.role}), {updateUserInfo})(UserInfo);
+export default connect(state => ({role: state.userInfo.role, redirectPath: state.userInfo.redirectPath}), {updateUserInfo})(UserInfo);

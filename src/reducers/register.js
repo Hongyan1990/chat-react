@@ -39,7 +39,7 @@ export function userInfo(state={
     case UPDATE_USER:
       return {
         ...state,
-        redirectPath: `/boss`
+        redirectPath: `/list`
       };
     case REGISTER_FAIL:
       return {...state, isAuth: false, errMsg: action.errMsg, redirectPath: ''}
