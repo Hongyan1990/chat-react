@@ -34,7 +34,7 @@ export function userInfo(state={
         isAuth: true,
         avatar: action.userInfo.avatar,
         errMsg: '',
-        redirectPath: `/userinfo/${action.userInfo.role}`
+        redirectPath: `/list/${action.userInfo.role}`
       };
     case UPDATE_USER:
       return {

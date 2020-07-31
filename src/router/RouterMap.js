@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {connect} from "react-redux";
+import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import * as Loadable from 'react-loadable';
 
 import App from '../containers/App.js'
@@ -18,14 +19,19 @@ const RouterList = [
   {
     path: '/userinfo/:id',
     component: () => import('../containers/UserInfo')
+  },
+  {
+    path: '/list/:id',
+    component: () => import('../containers/Main')
   }
 ];
 
-const RouterMap = () => (
+const RouterMap = (props) => (
   <Router>
     <App>
       <Authority />
       <Switch>
+        <Route exact={true} path="/" render={() => (<Redirect to={`/list/${props.role}`} />)} />
         {
           RouterList.map(item => (
             <Route
@@ -44,4 +50,4 @@ const RouterMap = () => (
   </Router>
 );
 
-export default RouterMap;
+export default connect(state => ({role: state.userInfo.role}))(RouterMap) ;
