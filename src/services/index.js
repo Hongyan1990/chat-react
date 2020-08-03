@@ -57,3 +57,7 @@ export function updateModel(data) {
 export function getUserInfoModel(id) {
   return handleRequest(request.get('/user?id='+id))
 }
+
+export function getJobsModel(id) {
+  return handleRequest(request.get('/list?id='+id))
+}
