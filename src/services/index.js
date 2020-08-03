@@ -53,3 +53,7 @@ export function loginModel(data) {
 export function updateModel(data) {
   return handleRequest(request.post('/userinfo', data))
 }
+
+export function getUserInfoModel(id) {
+  return handleRequest(request.get('/user?id='+id))
+}

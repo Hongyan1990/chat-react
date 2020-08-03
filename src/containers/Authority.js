@@ -2,6 +2,7 @@ import * as React from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
 import cookie from "../util/cookie";
+import {getUserInfoById} from "../actions";
 
 class Authority extends React.Component {
   componentDidMount() {
@@ -13,6 +14,8 @@ class Authority extends React.Component {
     const userId = cookie.getCookie('userToken');
     if(!userId) {
       this.props.history.push('/login')
+    } else {
+      this.props.getUserInfoById(userId);
     }
   }
   render () {
@@ -20,4 +23,4 @@ class Authority extends React.Component {
   }
 }
 
-export default withRouter(connect(state=>({isAuth: state.userInfo.isAuth}))(Authority))
+export default withRouter(connect(state=>({isAuth: state.userInfo.isAuth}), {getUserInfoById})(Authority))

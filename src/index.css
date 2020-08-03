@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.am-tab-bar{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height:auto;
+}
+.fixd-header.am-navbar{
+  position: fixed;
+  top: 0;
+  width: 100%;
+}

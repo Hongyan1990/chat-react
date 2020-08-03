@@ -21,7 +21,7 @@ const RouterList = [
     component: () => import('../containers/UserInfo')
   },
   {
-    path: '/list/:id',
+    path: '/list',
     component: () => import('../containers/Main')
   }
 ];
@@ -31,13 +31,12 @@ const RouterMap = (props) => (
     <App>
       <Authority />
       <Switch>
-        <Route exact={true} path="/" render={() => (<Redirect to={`/list/${props.role}`} />)} />
+        <Route exact={true} path="/" render={() => (<Redirect to={`/list`} />)} />
         {
           RouterList.map(item => (
             <Route
               key={item.path}
               path={item.path}
-              exact={true}
               component={Loadable({
                 loader: item.component,
                 loading: Loading
