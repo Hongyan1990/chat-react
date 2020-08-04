@@ -3,10 +3,10 @@ import {
   LOGIN_SUCCESS,
   REGISTER_FAIL,
   UPDATE_USER,
-  QUERY_USER
+  QUERY_USER,
+  LOGOUT
 } from "../actions";
-
-export function userInfo(state={
+const defaultState = {
   id: '',
   name: '',
   role: 0,
@@ -14,7 +14,8 @@ export function userInfo(state={
   isAuth: false,
   redirectPath: '',
   errMsg: ''
-}, action) {
+};
+export function userInfo(state=defaultState, action) {
   switch (action.type) {
     case REGISTER_SUCCESS:
       return {
@@ -47,6 +48,11 @@ export function userInfo(state={
         avatar: action.userInfo.avatar,
         errMsg: '',
         redirectPath: `/list/${action.userInfo.role}`
+      };
+    case LOGOUT:
+      return {
+        ...defaultState,
+        redirectPath: '/login'
       };
     case UPDATE_USER:
       return {

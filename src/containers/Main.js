@@ -27,6 +27,7 @@ class Main extends React.Component {
 
   render() {
     const {role} = this.props;
+    const {pathname} = this.props.location;
     const navList = [
       {
         path: '/list/boss',
@@ -59,11 +60,11 @@ class Main extends React.Component {
         component: Me
       },
     ];
-
+    const currentPageInfo = navList.find(v => pathname === v.path);
     return (
       <div>
         <Redirect to={role===0 ? '/list/genius': '/list/boss'} />
-        <NavBar className="fixd-header" mode="dark" leftContent="NavBar" />
+        <NavBar className="fixd-header" mode="dark" leftContent={currentPageInfo?currentPageInfo.title: ''} />
         <div style={{height: this.state.height+'px', marginTop: '45px'}}>
           <Switch>
             {

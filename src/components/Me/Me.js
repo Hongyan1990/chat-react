@@ -1,20 +1,39 @@
 import * as React from 'react';
 import * as moment from 'moment';
 import {connect} from "react-redux";
-import {Result, WhiteSpace, List, Button} from "antd-mobile";
+import {Redirect} from 'react-router-dom';
+import {Result, WhiteSpace, List, Button, Modal} from "antd-mobile";
+import cookie from '../../util/cookie';
 
-import {getJobsById} from "../../actions";
+import {getJobsById, logoutSubmit} from "../../actions";
 
 class Me extends React.Component {
+  constructor(props) {
+    super(props)
+    this.logout = this.logout.bind(this);
+  }
   componentDidMount() {
     this.props.getJobsById(this.props.id);
+
+  }
+
+  logout() {
+    const alert = Modal.alert;
+    alert('注销', '确认要退出登录吗？', [
+      {text: '取消', onPress: () => console.log('cancel')},
+      {text: '确认', onPress: () => {
+        cookie.setCookie('userToken', null, -1);
+        this.props.logoutSubmit();
+      }}
+    ])
+
   }
 
   render() {
-    const {name, role, avatar, jobs} = this.props;
+    const {name, role, avatar, jobs, redirectPath} = this.props;
     const Item = List.Item;
     const Brief = Item.Brief;
-    return (
+    return name ? (
       <div>
         <Result
           img={avatar?<img src={require(`../../static/${avatar}.png`)} style={{width: 50}} />: null}
@@ -24,7 +43,7 @@ class Me extends React.Component {
         <List renderHeader={() => '我的发布'}>
           {
             jobs.map(v => (
-              <Item>
+              <Item key={v.id}>
                 {v.title}
                 <Brief>
                   薪资：{v.salary}
@@ -38,9 +57,9 @@ class Me extends React.Component {
           }
         </List>
         <WhiteSpace/>
-        <Button>退出</Button>
+        <Button onClick={this.logout()}>退出</Button>
       </div>
-    )
+    ): <Redirect to={redirectPath} />
   }
 }
 
@@ -49,5 +68,6 @@ export default connect(state => ({
   name: state.userInfo.name,
   role: state.userInfo.role,
   avatar: state.userInfo.avatar,
-  jobs: state.list
-}), {getJobsById})(Me)
+  jobs: state.list,
+  redirectPath: state.userInfo.redirectPath
+}), {getJobsById, logoutSubmit})(Me)

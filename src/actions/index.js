@@ -8,6 +8,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const UPDATE_USER = 'UPDATE_USER';
 export const QUERY_USER = 'QUERY_USER';
 export const QUERY_JOBS = 'QUERY_JOBS';
+export const LOGOUT = 'LOGOUT';
 
 export function saveUser(userName) {
   return {
@@ -35,6 +36,10 @@ export function loginSuccess(userInfo) {
     type: LOGIN_SUCCESS,
     userInfo
   }
+}
+
+export function logoutSubmit() {
+  return {type: LOGOUT}
 }
 
 export function register(userInfo) {
