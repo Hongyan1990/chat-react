@@ -61,3 +61,7 @@ export function getUserInfoModel(id) {
 export function getJobsModel(id) {
   return handleRequest(request.get('/list?id='+id))
 }
+
+export function getJobsByRoleModel(role) {
+  return handleRequest(request.get('/list?role='+role))
+}

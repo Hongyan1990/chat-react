@@ -10,7 +10,6 @@ import {getJobsById, logoutSubmit} from "../../actions";
 class Me extends React.Component {
   constructor(props) {
     super(props)
-    this.logout = this.logout.bind(this);
   }
   componentDidMount() {
     this.props.getJobsById(this.props.id);
@@ -18,6 +17,7 @@ class Me extends React.Component {
   }
 
   logout() {
+    console.log(123)
     const alert = Modal.alert;
     alert('注销', '确认要退出登录吗？', [
       {text: '取消', onPress: () => console.log('cancel')},
@@ -57,7 +57,7 @@ class Me extends React.Component {
           }
         </List>
         <WhiteSpace/>
-        <Button onClick={this.logout()}>退出</Button>
+        <Button onClick={() => this.logout()}>退出</Button>
       </div>
     ): <Redirect to={redirectPath} />
   }

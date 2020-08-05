@@ -12,14 +12,16 @@ code {
     monospace;
 }
 
-.am-tab-bar{
+div.am-tab-bar{
   position: fixed;
   bottom: 0;
   width: 100%;
   height:auto;
+  z-index: 99;
 }
 .fixd-header.am-navbar{
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 99;
 }

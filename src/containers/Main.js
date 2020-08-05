@@ -5,13 +5,9 @@ import {NavBar} from "antd-mobile";
 
 import TabLink from "../components/TabLink/TabLink";
 import Me from "../components/Me/Me";
+import Boss from "../containers/Boss";
+import Genius from "../containers/Genius";
 
-function Boss() {
-  return <h2>Boss</h2>
-}
-function Genius() {
-  return <h2>Genius</h2>
-}
 function Message() {
   return <h2>Msg</h2>
 }
@@ -65,7 +61,7 @@ class Main extends React.Component {
       <div>
         <Redirect to={role===0 ? '/list/genius': '/list/boss'} />
         <NavBar className="fixd-header" mode="dark" leftContent={currentPageInfo?currentPageInfo.title: ''} />
-        <div style={{height: this.state.height+'px', marginTop: '45px'}}>
+        <div style={{ marginTop: '45px', marginBottom: '55px'}}>
           <Switch>
             {
               navList.map(v => (

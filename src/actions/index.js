@@ -1,5 +1,12 @@
 import { Toast } from 'antd-mobile';
-import {registerModel, loginModel, updateModel, getUserInfoModel, getJobsModel} from "../services";
+import {
+  registerModel,
+  loginModel,
+  updateModel,
+  getUserInfoModel,
+  getJobsModel,
+  getJobsByRoleModel
+} from "../services";
 
 export const SAVE_USER = 'SAVE_USER';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
@@ -99,6 +106,18 @@ export function getUserInfoById(id) {
 export function getJobsById(id) {
   return dispatch => {
     return getJobsModel(id)
+      .then(data => {
+        dispatch({type: QUERY_JOBS, jobs: data})
+      })
+      .catch(err => {
+        dispatch(registerFail(err))
+      })
+  }
+}
+
+export function getJobsByRole(role) {
+  return dispatch => {
+    return getJobsByRoleModel(role)
       .then(data => {
         dispatch({type: QUERY_JOBS, jobs: data})
       })

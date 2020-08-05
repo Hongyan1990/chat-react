@@ -9,7 +9,7 @@ import {
 const defaultState = {
   id: '',
   name: '',
-  role: 0,
+  role: null,
   avatar: '',
   isAuth: false,
   redirectPath: '',
