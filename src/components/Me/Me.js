@@ -68,6 +68,6 @@ export default connect(state => ({
   name: state.userInfo.name,
   role: state.userInfo.role,
   avatar: state.userInfo.avatar,
-  jobs: state.list,
+  jobs: state.list.publication,
   redirectPath: state.userInfo.redirectPath
 }), {getJobsById, logoutSubmit})(Me)

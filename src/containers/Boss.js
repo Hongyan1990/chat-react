@@ -21,5 +21,5 @@ class Boss extends React.Component {
 
 export default connect(state=> ({
   id: state.userInfo.id,
-  jobs: state.list
+  jobs: state.list.jobs
 }), {getJobsByRole})(Boss);

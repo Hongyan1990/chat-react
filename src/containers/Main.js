@@ -57,7 +57,7 @@ class Main extends React.Component {
       },
     ];
     const currentPageInfo = navList.find(v => pathname === v.path);
-    return (
+    return role !== null ? (
       <div>
         <Redirect to={role===0 ? '/list/genius': '/list/boss'} />
         <NavBar className="fixd-header" mode="dark" leftContent={currentPageInfo?currentPageInfo.title: ''} />
@@ -72,7 +72,7 @@ class Main extends React.Component {
         </div>
         <TabLink navList={navList} />
       </div>
-    )
+    ) : (<Redirect to='/login' />)
   }
 }
 

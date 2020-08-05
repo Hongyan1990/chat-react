@@ -15,6 +15,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const UPDATE_USER = 'UPDATE_USER';
 export const QUERY_USER = 'QUERY_USER';
 export const QUERY_JOBS = 'QUERY_JOBS';
+export const QUERY_PUBLICATION = 'QUERY_PUBLICATION';
 export const LOGOUT = 'LOGOUT';
 
 export function saveUser(userName) {
@@ -107,7 +108,7 @@ export function getJobsById(id) {
   return dispatch => {
     return getJobsModel(id)
       .then(data => {
-        dispatch({type: QUERY_JOBS, jobs: data})
+        dispatch({type: QUERY_PUBLICATION, jobs: data})
       })
       .catch(err => {
         dispatch(registerFail(err))
